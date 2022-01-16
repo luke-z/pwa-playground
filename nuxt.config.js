@@ -1,6 +1,3 @@
-import { resolve } from 'path'
-import WorkboxPlugin from 'workbox-webpack-plugin'
-
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -27,7 +24,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/meta', '~/plugins/workbox'],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -60,18 +57,4 @@ export default {
       mobileAppIOS: true
     }
   },
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  // build: {
-  //   plugins:
-  //     process.env.NODE_ENV === 'production'
-  //       ? [
-  //           new WorkboxPlugin.InjectManifest({
-  //             swSrc: './assets/sw.js',
-  //             swDest: resolve('./static/sw.js'),
-  //             maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
-  //           }),
-  //         ]
-  //       : [],
-  // },
 }
