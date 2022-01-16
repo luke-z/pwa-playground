@@ -10,7 +10,10 @@ const workbox: Plugin = () => {
     const wb = new Workbox('/sw.js', { scope: '/' })
 
     wb.register().catch((err) => {
-      document.getElementById('log')?.innerHTML = err
+      const logElement = document.getElementById('log')
+      if (logElement) {
+        logElement.innerHTML = err
+      }
     })
   }
 }
