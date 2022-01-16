@@ -28,7 +28,17 @@ const customRoutes = [
 
 manifest.push(...customRoutes)
 
-// let isOnline = navigator.onLine
+let isOnline = navigator.onLine
+
+self.addEventListener('online', () => {
+  isOnline = true
+  registerRoutes()
+})
+
+self.addEventListener('offline', () => {
+  isOnline = false
+  registerRoutes()
+})
 
 // navigator.connection.onchange = () => {
 //   if (navigator.onLine) {
@@ -56,7 +66,7 @@ const registerRoutes = () => {
 
   routes.forEach((route) => {
     const { url, plugins } = route
-    const strategy = new CacheFirst({ plugins })
+    const strategy = isOnline ? new NetworkFirst({ plugins }) : new CacheFirst({ plugins })
     registerRoute(new RegExp(url), strategy)
   })
 }
