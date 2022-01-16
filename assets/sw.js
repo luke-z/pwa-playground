@@ -39,7 +39,7 @@ manifest.push(...customRoutes)
 // }
 
 // self.__WB_DISABLE_DEV_LOGS = true
-setDefaultHandler(new CacheFirst())
+setDefaultHandler(new NetworkFirst())
 
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
@@ -48,7 +48,7 @@ precacheAndRoute(manifest, {
 const registerRoutes = () => {
   const routes = [
     {
-      url: '/test.*',
+      url: '/icons.*',
     },
   ]
 
