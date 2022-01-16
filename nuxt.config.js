@@ -40,6 +40,7 @@ export default {
     '@nuxtjs/tailwindcss',
     // https://composition-api.nuxtjs.org/
     '@nuxtjs/composition-api/module',
+    '@nuxtjs/pwa',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
