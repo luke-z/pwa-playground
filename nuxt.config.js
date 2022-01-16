@@ -1,3 +1,6 @@
+import { resolve } from 'path'
+import WorkboxPlugin from 'workbox-webpack-plugin'
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -24,7 +27,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/meta', '~/plugins/workbox'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -35,6 +38,8 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://composition-api.nuxtjs.org/
+    '@nuxtjs/composition-api/module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -50,5 +55,16 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    plugins:
+      process.env.NODE_ENV === 'production'
+        ? [
+            new WorkboxPlugin.InjectManifest({
+              swSrc: './assets/sw.js',
+              swDest: resolve('./static/sw.js'),
+              maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+            }),
+          ]
+        : [],
+  },
 }
