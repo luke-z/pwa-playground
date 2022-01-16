@@ -55,6 +55,12 @@ export default {
   pwa: {
     meta: {
       mobileAppIOS: true
+    },
+    workbox: {
+      preCaching: ['/', '/test'],
+      cacheOptions: {
+        ignoreURLParametersMatching: [/.*/]
+      }
     }
   },
 }
