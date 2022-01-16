@@ -39,7 +39,7 @@ manifest.push(...customRoutes)
 // }
 
 // self.__WB_DISABLE_DEV_LOGS = true
-setDefaultHandler(new NetworkFirst())
+setDefaultHandler(new CacheFirst())
 
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
