@@ -28,17 +28,17 @@ const customRoutes = [
 
 manifest.push(...customRoutes)
 
-let isOnline = navigator.onLine
+// let isOnline = navigator.onLine
 
-navigator.connection.onchange = () => {
-  if (navigator.onLine) {
-    isOnline = true
-  } else {
-    isOnline = false
-  }
+// navigator.connection.onchange = () => {
+//   if (navigator.onLine) {
+//     isOnline = true
+//   } else {
+//     isOnline = false
+//   }
 
-  registerRoutes()
-}
+//   registerRoutes()
+// }
 
 // self.__WB_DISABLE_DEV_LOGS = true
 setDefaultHandler(new NetworkFirst())
@@ -56,7 +56,7 @@ const registerRoutes = () => {
 
   routes.forEach((route) => {
     const { url, plugins } = route
-    const strategy = isOnline ? new NetworkFirst({ plugins }) : new CacheFirst({ plugins })
+    const strategy = new CacheFirst({ plugins })
     registerRoute(new RegExp(url), strategy)
   })
 }
