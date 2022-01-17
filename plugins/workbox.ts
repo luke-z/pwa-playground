@@ -7,14 +7,10 @@ const workbox: Plugin = () => {
   }
 
   if ('serviceWorker' in navigator) {
-    const wb = new Workbox('/sw.js', { scope: '/' })
-
-    wb.register().catch((err) => {
-      const logElement = document.getElementById('log')
-      if (logElement) {
-        logElement.innerHTML = err
-      }
-    })
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
   }
 }
 

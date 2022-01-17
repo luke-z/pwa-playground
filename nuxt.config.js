@@ -27,7 +27,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/meta'],
+  plugins: ['~/plugins/meta', '~/plugins/workbox'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
