@@ -63,6 +63,7 @@ export default {
               swSrc: './assets/sw.js',
               swDest: resolve('./static/sw.js'),
               maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+              mode: 'development',
             }),
           ]
         : [],
