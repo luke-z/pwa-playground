@@ -43,6 +43,7 @@ setDefaultHandler(new NetworkFirst())
 
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
+  directoryIndex: '/'
 })
 
 const registerRoutes = () => {

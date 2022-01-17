@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1 class="text-2xl">PWA Playground</h1>
-    <nuxt-link to="/test">Link to test page</nuxt-link>
+    <p><nuxt-link to="/test">Link to test page</nuxt-link></p>
+    <p><nuxt-link to="/test?id=12">Link to test page with param</nuxt-link></p>
     <div id="log"></div>
   </div>
 </template>
