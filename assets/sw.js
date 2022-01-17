@@ -21,8 +21,8 @@ setCacheNameDetails({
 const manifest = self.__WB_MANIFEST
 const customRoutes = [
   { url: '/?standalone=true', revision: Date.now().toString() },
-  { url: '/test', revision: Date.now().toString() },
-  { url: '/test/', revision: Date.now().toString() },
+  // { url: '/test', revision: Date.now().toString() },
+  // { url: '/test/', revision: Date.now().toString() },
   { url: '/manifest.json', revision: Date.now().toString() },
   { url: '/favicon.ico', revision: Date.now().toString() },
 ]
@@ -62,8 +62,8 @@ const registerRoutes = () => {
     registerRoute(new RegExp(url), strategy)
   })
 
-  // registerRoute(new RegExp('/_nuxt/.*'), new CacheFirst(), 'GET')
-  // registerRoute(new RegExp('/.*'), new NetworkFirst(), 'GET')
+  registerRoute(new RegExp('/_nuxt/.*'), new CacheFirst(), 'GET')
+  registerRoute(new RegExp('/.*'), new NetworkFirst(), 'GET')
 }
 
 registerRoutes()
