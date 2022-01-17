@@ -57,15 +57,17 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     plugins:
-      process.env.NODE_ENV === 'production'
-        ? [
-            new WorkboxPlugin.InjectManifest({
-              swSrc: './assets/sw.js',
-              swDest: resolve('./static/sw.js'),
-              maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
-              mode: 'development',
-            }),
-          ]
-        : [],
+      [
+        new WorkboxPlugin.InjectManifest({
+          swSrc: './assets/sw.js',
+          swDest: resolve('./static/sw.js'),
+          maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+          additionalManifestEntries: [
+            '/',
+            '/test',
+            '/test/deep'
+          ],
+        }),
+      ]
   },
 }
