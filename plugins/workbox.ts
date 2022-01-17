@@ -7,7 +7,7 @@ const workbox: Plugin = () => {
   }
 
   if ('serviceWorker' in navigator) {
-    const wb = new Workbox('/sw.js')
+    const wb = new Workbox('/sw.js', { scope: '/' })
 
     wb.register().catch((err) => {
       const logElement = document.getElementById('log')
