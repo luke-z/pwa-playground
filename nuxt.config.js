@@ -27,7 +27,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/meta', '~/plugins/workbox'],
+  plugins: ['~/plugins/meta'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -56,16 +56,28 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    plugins:
-      process.env.NODE_ENV === 'production'
-        ? [
-            new WorkboxPlugin.InjectManifest({
-              swSrc: './assets/sw.js',
-              swDest: resolve('./static/sw.js'),
-              maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
-              mode: 'development',
-            }),
-          ]
-        : [],
+    plugins: [
+      new WorkboxPlugin.GenerateSW({
+        runtimeCaching: [{
+          urlPattern: /\/icons.*/,
+          handler: 'CacheFirst'
+        },
+        {
+          urlPattern: /\/_nuxt.*/,
+          handler: 'CacheFirst'
+        },
+        {
+          urlPattern: /\/.*/,
+          handler: 'NetworkFirst'
+        }],
+        additionalManifestEntries: [
+          '/',
+          '/test',
+          '/test/deep'
+        ],
+        ignoreURLParametersMatching: [/.*/],
+        directoryIndex: '/'
+      }),
+    ]
   },
 }
