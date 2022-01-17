@@ -8,9 +8,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted } from '@nuxtjs/composition-api'
 
-export default defineComponent({})
+export default defineComponent({
+  setup() {
+     onMounted(() => {
+      console.log('mounted index page')
+    })
+  }
+})
 </script>
 
 <style></style>

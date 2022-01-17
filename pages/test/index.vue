@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useRouter, useContext, computed } from '@nuxtjs/composition-api'
+import { defineComponent, useRouter, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
@@ -18,6 +18,10 @@ export default defineComponent({
     const refresh = () => {
       window.location.reload()
     }
+
+    onMounted(() => {
+      console.log('mounted test page')
+    })
 
     const id = computed(() => query.value.id)
 
