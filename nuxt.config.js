@@ -58,6 +58,7 @@ export default {
   build: {
     plugins: [
       new WorkboxPlugin.GenerateSW({
+        swDest: resolve('./static/sw.js'),
         runtimeCaching: [{
           urlPattern: /\/icons.*/,
           handler: 'CacheFirst'
