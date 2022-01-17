@@ -23,11 +23,11 @@ const manifest = self.__WB_MANIFEST
 const hash = Date.now().toString()
 
 const customRoutes = [
-  { url: '/', revision: hash },
-  { url: '/test', revision: hash },
-  { url: '/test/deep', revision: hash },
-  { url: '/manifest.json', revision: Date.now().toString() },
-  { url: '/favicon.ico', revision: Date.now().toString() },
+  { url: '/', revision: null },
+  { url: '/test', revision: null },
+  { url: '/test/deep', revision: null },
+  { url: '/manifest.json', revision: hash },
+  { url: '/favicon.ico', revision: hash },
 ]
 
 manifest.push(...customRoutes)
