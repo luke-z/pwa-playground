@@ -20,7 +20,7 @@ setCacheNameDetails({
 
 const manifest = self.__WB_MANIFEST
 const customRoutes = [
-  { url: '/?standalone=true', revision: null },
+  // { url: '/?standalone=true', revision: null },
   { url: '/', revision: null },
   { url: '/test', revision: null },
   { url: '/test/deep', revision: null },
@@ -45,7 +45,7 @@ manifest.push(...customRoutes)
 setDefaultHandler(new NetworkFirst())
 
 precacheAndRoute(manifest, {
-  ignoreURLParametersMatching: [/.*id.*/],
+  ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
 })
 
