@@ -20,8 +20,8 @@ setCacheNameDetails({
 
 const manifest = self.__WB_MANIFEST
 const customRoutes = [
-  { url: '/?standalone=true', revision: Date.now().toString() },
-  { url: '/', revision: Date.now().toString() },
+  { url: '/?standalone=true', revision: null },
+  { url: '/', revision: null },
   { url: '/test', revision: null },
   { url: '/test/deep', revision: null },
   { url: '/manifest.json', revision: Date.now().toString() },
