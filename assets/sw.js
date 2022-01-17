@@ -37,10 +37,6 @@ setDefaultHandler(new NetworkFirst())
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
-  urlManipulation: ({ url }) => {
-    const manifestUrl = `${url.pathname}?__WB_REVISION__=${hash}`
-    return [manifestUrl]
-  }
 })
 
 
