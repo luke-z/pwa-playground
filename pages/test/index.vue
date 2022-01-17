@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1 class="text-2xl">PWA Playground Test Page</h1>
-    <nuxt-link to="/">Link to index</nuxt-link>
+    <p><nuxt-link to="/">Link to index</nuxt-link></p>
+    <p><nuxt-link to="/test/deep">Link to deep</nuxt-link></p>
+
     <p><button @click="refresh">refresh page</button></p>
     <p v-if="id">{{ id }}</p>
   </div>
