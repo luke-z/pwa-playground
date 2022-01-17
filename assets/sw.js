@@ -19,11 +19,14 @@ setCacheNameDetails({
 })
 
 const manifest = self.__WB_MANIFEST
+
+const hash = Date.now().toString()
+
 const customRoutes = [
   // { url: '/?standalone=true', revision: null },
-  { url: '/', revision: null },
-  { url: '/test', revision: null },
-  { url: '/test/deep', revision: null },
+  { url: '/', revision: hash },
+  { url: '/test', revision: hash },
+  { url: '/test/deep', revision: hash },
   { url: '/manifest.json', revision: Date.now().toString() },
   { url: '/favicon.ico', revision: Date.now().toString() },
 ]
@@ -47,8 +50,11 @@ setDefaultHandler(new NetworkFirst())
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
-  urlManipulation: ({url}) => {
+  urlManipulation: ({ url }) => {
     console.log(url)
+    const manifestUrl = `${url.pathname}?__WB_REVISION__=${hash}`
+    console.log(manifestUrl)
+    return [manifestUrl]
   }
 })
 
