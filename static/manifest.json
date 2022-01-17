@@ -1,7 +1,7 @@
 {
   "name": "PWA Playground",
   "short_name": "PWA Playground",
-  "description": "PWA Playground",
+  "description": "PWA Playground Description",
   "icons": [
     {
       "src": "/icons/icon_64x64.png",
