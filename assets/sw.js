@@ -44,7 +44,7 @@ manifest.push(...customRoutes)
 setDefaultHandler(new NetworkFirst())
 
 precacheAndRoute(manifest, {
-  // ignoreURLParametersMatching: [/.*/],
+  ignoreURLParametersMatching: [/.id*/],
   directoryIndex: '/',
 })
 
