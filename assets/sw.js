@@ -39,10 +39,9 @@ manifest.push(...customRoutes)
 // }
 
 // self.__WB_DISABLE_DEV_LOGS = true
-setDefaultHandler(new NetworkFirst())
 
 precacheAndRoute(manifest, {
-  ignoreURLParametersMatching: [/.*/],
+  // ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
   cleanUrls: false
 })
@@ -56,9 +55,12 @@ const registerRoutes = () => {
 
   routes.forEach((route) => {
     const { url, plugins } = route
-    const strategy = new CacheFirst({ plugins })
+    const strategy = new NetworkFirst({ plugins })
     registerRoute(new RegExp(url), strategy)
   })
+
+  registerRoute(new RegExp('/_nuxt/.*'), new CacheFirst(), 'GET')
+  registerRoute(new RegExp('/.*'), new NetworkFirst(), 'GET')
 }
 
 registerRoutes()
