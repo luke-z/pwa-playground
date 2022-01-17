@@ -23,7 +23,6 @@ const manifest = self.__WB_MANIFEST
 const hash = Date.now().toString()
 
 const customRoutes = [
-  // { url: '/?standalone=true', revision: null },
   { url: '/', revision: hash },
   { url: '/test', revision: hash },
   { url: '/test/deep', revision: hash },
@@ -33,57 +32,18 @@ const customRoutes = [
 
 manifest.push(...customRoutes)
 
-// navigator.connection.onchange = () => {
-//   if (navigator.onLine) {
-//     isOnline = true
-//   } else {
-//     isOnline = false
-//   }
-
-//   registerRoutes()
-// }
-
-// self.__WB_DISABLE_DEV_LOGS = true
-
 setDefaultHandler(new NetworkFirst())
 
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
   urlManipulation: ({ url }) => {
-    console.log(url)
     const manifestUrl = `${url.pathname}?__WB_REVISION__=${hash}`
-    console.log(manifestUrl)
     return [manifestUrl]
   }
 })
 
-const registerRoutes = () => {
-  const routes = [
-    {
-      url: '/icons.*',
-    },
-  ]
 
-  routes.forEach((route) => {
-    const { url, plugins } = route
-    const strategy = new CacheFirst({ plugins })
-    registerRoute(new RegExp(url), strategy)
-  })
-
-  registerRoute(new RegExp('/_nuxt/.*'), new CacheFirst(), 'GET')
-  registerRoute(new RegExp('/.*'), new NetworkFirst(), 'GET')
-}
-
-registerRoutes()
-
-self.addEventListener("fetch", function (event) {
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request);
-    })
-  );
-});
+registerRoute(new RegExp('/icons.*'), new CacheFirst(), 'GET')
+registerRoute(new RegExp('/_nuxt/.*'), new CacheFirst(), 'GET')
+registerRoute(new RegExp('/.*'), new NetworkFirst(), 'GET')
