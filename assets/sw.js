@@ -23,6 +23,9 @@ const manifest = self.__WB_MANIFEST
 const hash = Date.now().toString()
 
 const customRoutes = [
+  { url: '/', revision: hash},
+  { url: '/test', revision: hash},
+  { url: '/test/deep', revision: hash},
   { url: '/manifest.json', revision: hash },
   { url: '/favicon.ico', revision: hash },
 ]
@@ -32,8 +35,13 @@ manifest.push(...customRoutes)
 setDefaultHandler(new NetworkFirst())
 
 precacheAndRoute(manifest, {
-  ignoreURLParametersMatching: [/.*/],
+  // ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
+  urlManipulation: (test) => {
+    console.log(test)
+    const revisionUrl = `${test.url.pathname}?__WB_REVISION__=${hash}`
+    return [revisionUrl]
+  }
 })
 
 
