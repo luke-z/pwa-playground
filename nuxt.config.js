@@ -58,10 +58,18 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     plugins: [
-      new WorkboxPlugin.InjectManifest({
-        swSrc: './assets/sw.js',
+      new WorkboxPlugin.GenerateSW({
+        // swSrc: './assets/sw.js',
         swDest: resolve('./static/sw.js'),
         maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+        additionalManifestEntries: [
+          '/',
+          '/test',
+          '/test/',
+          '/test/deep',
+          '/test/deep/'
+        ],
+        directoryIndex: '/'
         // additionalManifestEntries: [
         //   '/',
         //   '/test',

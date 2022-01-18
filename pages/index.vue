@@ -13,7 +13,7 @@ import { defineComponent, onMounted } from '@nuxtjs/composition-api'
 export default defineComponent({
   setup() {
      onMounted(() => {
-      console.log('mounted index page')
+      console.log('mounted index page, flup')
     })
   }
 })
