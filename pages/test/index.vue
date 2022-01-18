@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-2xl">PWA Playground Test Page3</h1>
+    <h1 class="text-2xl">PWA Playground Test Page4</h1>
     <p><nuxt-link to="/">Link to index</nuxt-link></p>
     <p><nuxt-link to="/test/deep">Link to deep</nuxt-link></p>
 
