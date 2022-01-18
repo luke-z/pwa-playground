@@ -37,11 +37,6 @@ setDefaultHandler(new NetworkFirst())
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
-  urlManipulation: (test) => {
-    console.log(test)
-    const revisionUrl = `${test.url.pathname}?__WB_REVISION__=${hash}`
-    return [revisionUrl]
-  },
 })
 
 registerRoute(new RegExp('/icons.*'), new CacheFirst(), 'GET')
