@@ -18,7 +18,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      console.log('mounted deep page')
+      console.log('mounted deep page, fluppip')
     })
 
     const id = computed(() => query.value.id)

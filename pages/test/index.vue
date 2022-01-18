@@ -20,7 +20,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      console.log('mounted test page')
+      console.log('mounted test page, fluppip')
     })
 
     const id = computed(() => query.value.id)
