@@ -1,6 +1,10 @@
 /* eslint-disable prefer-regex-literals */
 
-import { registerRoute, setCatchHandler, setDefaultHandler } from 'workbox-routing'
+import {
+  registerRoute,
+  setCatchHandler,
+  setDefaultHandler,
+} from 'workbox-routing'
 import { matchPrecache, precacheAndRoute } from 'workbox-precaching'
 import { clientsClaim, setCacheNameDetails } from 'workbox-core'
 import { CacheFirst, NetworkFirst } from 'workbox-strategies'
@@ -23,9 +27,9 @@ const manifest = self.__WB_MANIFEST
 const hash = Date.now().toString()
 
 const customRoutes = [
-  { url: '/', revision: hash},
-  { url: '/test', revision: hash},
-  { url: '/test/deep', revision: hash},
+  { url: '/', revision: hash },
+  { url: '/test', revision: hash },
+  { url: '/test/deep', revision: hash },
   { url: '/manifest.json', revision: hash },
   { url: '/favicon.ico', revision: hash },
 ]
@@ -41,15 +45,8 @@ precacheAndRoute(manifest, {
     console.log(test)
     const revisionUrl = `${test.url.pathname}?__WB_REVISION__=${hash}`
     return [revisionUrl]
-  }
+  },
 })
-
-setCatchHandler(({ event }) => {
-    console.log(event)
-    const revisionUrl = `${event.request.url}?__WB_REVISION__=${hash}`
-    return matchPrecache(revisionUrl)
-});
-
 
 registerRoute(new RegExp('/icons.*'), new CacheFirst(), 'GET')
 registerRoute(new RegExp('/_nuxt/.*'), new CacheFirst(), 'GET')
