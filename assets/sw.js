@@ -7,8 +7,8 @@ import { CacheFirst, NetworkFirst } from 'workbox-strategies'
 
 const { skipWaiting } = self
 
-// clientsClaim()
-// skipWaiting()
+clientsClaim()
+skipWaiting()
 
 setCacheNameDetails({
   prefix: 'test',
