@@ -19,6 +19,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'manifest', name: 'manifest', content: '/manifest.json' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -56,18 +57,17 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    plugins:
-      [
-        new WorkboxPlugin.InjectManifest({
-          swSrc: './assets/sw.js',
-          swDest: resolve('./static/sw.js'),
-          maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
-          // additionalManifestEntries: [
-          //   '/',
-          //   '/test',
-          //   '/test/deep'
-          // ],
-        }),
-      ]
+    plugins: [
+      new WorkboxPlugin.InjectManifest({
+        swSrc: './assets/sw.js',
+        swDest: resolve('./static/sw.js'),
+        maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+        // additionalManifestEntries: [
+        //   '/',
+        //   '/test',
+        //   '/test/deep'
+        // ],
+      }),
+    ],
   },
 }
