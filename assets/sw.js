@@ -45,16 +45,9 @@ precacheAndRoute(manifest, {
 })
 
 setCatchHandler(({ event }) => {
-  console.log(event)
-  switch (event.request.destination) {
-    case "document": {
-      const revisionUrl = `${event.request.url}?__WB_REVISION__=${hash}`
-      return matchPrecache(revisionUrl);
-    }
-
-    default:
-      return Response.error();
-  }
+    console.log(event)
+    const revisionUrl = `${event.request.url}?__WB_REVISION__=${hash}`
+    return matchPrecache(revisionUrl)
 });
 
 
