@@ -46,7 +46,7 @@
       "purpose": "maskable any"
     }
   ],
-  "start_url": "/",
+  "start_url": "/?standalone=true",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
