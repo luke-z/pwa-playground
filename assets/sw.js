@@ -1,7 +1,7 @@
 /* eslint-disable prefer-regex-literals */
 
 import { registerRoute, setCatchHandler, setDefaultHandler } from 'workbox-routing'
-import { precacheAndRoute } from 'workbox-precaching'
+import { matchPrecache, precacheAndRoute } from 'workbox-precaching'
 import { clientsClaim, setCacheNameDetails } from 'workbox-core'
 import { CacheFirst, NetworkFirst } from 'workbox-strategies'
 
@@ -38,16 +38,24 @@ precacheAndRoute(manifest, {
   // ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
   urlManipulation: (test) => {
-    alert('manipulating')
     console.log(test)
     const revisionUrl = `${test.url.pathname}?__WB_REVISION__=${hash}`
     return [revisionUrl]
   }
 })
 
-setCatchHandler((test) => {
-  new Error(test)
-})
+setCatchHandler(({ event }) => {
+  console.log(event)
+  switch (event.request.destination) {
+    case "document": {
+      const revisionUrl = `${event.request.url}?__WB_REVISION__=${hash}`
+      return matchPrecache(revisionUrl);
+    }
+
+    default:
+      return Response.error();
+  }
+});
 
 
 registerRoute(new RegExp('/icons.*'), new CacheFirst(), 'GET')
