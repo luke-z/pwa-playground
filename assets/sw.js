@@ -46,10 +46,7 @@ precacheAndRoute(manifest, {
 })
 
 setCatchHandler((test) => {
-  const logElement = document.getElementById('log')
-      if (logElement) {
-        logElement.innerHTML = test
-      }
+  new Error(test)
 })
 
 
