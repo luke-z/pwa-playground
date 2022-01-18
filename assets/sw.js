@@ -1,18 +1,14 @@
 /* eslint-disable prefer-regex-literals */
 
-import {
-  registerRoute,
-  setCatchHandler,
-  setDefaultHandler,
-} from 'workbox-routing'
-import { matchPrecache, precacheAndRoute } from 'workbox-precaching'
+import { registerRoute, setDefaultHandler } from 'workbox-routing'
+import { precacheAndRoute } from 'workbox-precaching'
 import { clientsClaim, setCacheNameDetails } from 'workbox-core'
 import { CacheFirst, NetworkFirst } from 'workbox-strategies'
 
 const { skipWaiting } = self
 
-clientsClaim()
-skipWaiting()
+// clientsClaim()
+// skipWaiting()
 
 setCacheNameDetails({
   prefix: 'test',
