@@ -49,7 +49,9 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#ff6600",
+  "dir": "ltr",
   "lang": "de-CH"
 }

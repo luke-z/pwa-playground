@@ -39,7 +39,7 @@ manifest.push(...customRoutes)
 setDefaultHandler(new NetworkFirst())
 
 precacheAndRoute(manifest, {
-  // ignoreURLParametersMatching: [/.*/],
+  ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
   urlManipulation: (test) => {
     console.log(test)
