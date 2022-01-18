@@ -1,6 +1,6 @@
 /* eslint-disable prefer-regex-literals */
 
-import { registerRoute, setDefaultHandler } from 'workbox-routing'
+import { registerRoute, setCatchHandler, setDefaultHandler } from 'workbox-routing'
 import { precacheAndRoute } from 'workbox-precaching'
 import { clientsClaim, setCacheNameDetails } from 'workbox-core'
 import { CacheFirst, NetworkFirst } from 'workbox-strategies'
@@ -38,10 +38,19 @@ precacheAndRoute(manifest, {
   // ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
   urlManipulation: (test) => {
+    alert('manipulating')
     console.log(test)
     const revisionUrl = `${test.url.pathname}?__WB_REVISION__=${hash}`
     return [revisionUrl]
   }
+})
+
+setCatchHandler((test) => {
+  alert(test)
+  const logElement = document.getElementById('log')
+      if (logElement) {
+        logElement.innerHTML = test
+      }
 })
 
 
