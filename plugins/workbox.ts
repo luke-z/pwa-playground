@@ -9,7 +9,7 @@ const workbox: Plugin = async () => {
   if ('serviceWorker' in navigator) {
     await navigator.serviceWorker.register('/sw.js')
 
-    await navigator.serviceWorker.ready
+    // await navigator.serviceWorker.ready
     // const wb = new Workbox('/sw.js', { scope: '/' })
 
     // wb.register().then(() => console.log(navigator.serviceWorker.ready)).then(() => fetch('https://dog.ceo/api/breed/hound/list')).catch((err) => {
