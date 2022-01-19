@@ -27,11 +27,11 @@ export default defineComponent({
       window.location.reload()
     }
 
-    const dogs = ref([])
+    const dogs = ref<any[]>([])
 
     onMounted(async () => {
       console.log('mounted test page, fluppip')
-      dogs.value = await fetch('https://dog.ceo/api/breed/hound/list')
+      dogs.value = (await fetch('https://dog.ceo/api/breed/hound/list') as any).message
     })
 
     const id = computed(() => query.value.id)

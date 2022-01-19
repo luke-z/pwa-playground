@@ -70,7 +70,7 @@ export default {
           { url: '/test/deep', revision },
         ],
         runtimeCaching: [{
-          urlPattern: new RegExp('https://dog.ceo/api.*'),
+          urlPattern: new RegExp(`${process.env.API_URL}.*`),
           handler: 'NetworkFirst',
         }],
         directoryIndex: '/',
