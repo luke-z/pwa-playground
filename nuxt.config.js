@@ -63,13 +63,12 @@ export default {
         swDest: resolve('./static/sw.js'),
         maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
         additionalManifestEntries: [
-          { url: '/', revision: '7' },
-          // { url: '/test', revision: '7' },
-          { url: '/test/', revision: '7' },
-          // { url: '/test/deep', revision: '7' },
-          { url: '/test/deep/', revision: '7' },
+          { url: '/', revision: '8' },
+          { url: '/test', revision: '8' },
+          { url: '/test/deep', revision: '8' },
         ],
         directoryIndex: '/',
+        ignoreURLParametersMatching: [/.*/],
         // additionalManifestEntries: [
         //   '/',
         //   '/test',
