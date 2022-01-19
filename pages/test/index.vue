@@ -5,12 +5,20 @@
     <p><nuxt-link to="/test/deep">Link to deep</nuxt-link></p>
 
     <p><button @click="refresh">refresh page</button></p>
+    <p v-for="dog in dogs" :key="dog">{{ dog }}</p>
     <p v-if="id">{{ id }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, useRouter, useContext, computed, onMounted } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  useRouter,
+  useContext,
+  computed,
+  onMounted,
+  ref,
+} from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
@@ -19,15 +27,19 @@ export default defineComponent({
       window.location.reload()
     }
 
-    onMounted(() => {
+    const dogs = ref([])
+
+    onMounted(async () => {
       console.log('mounted test page, fluppip')
+      dogs.value = await fetch('https://dog.ceo/api/breed/hound/list')
     })
 
     const id = computed(() => query.value.id)
 
     return {
       refresh,
-      id
+      id,
+      dogs,
     }
   },
 })

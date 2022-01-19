@@ -69,13 +69,12 @@ export default {
           { url: '/test', revision },
           { url: '/test/deep', revision },
         ],
+        runtimeCaching: [{
+          urlPattern: new RegExp('https://dog.ceo/api.*'),
+          handler: 'NetworkFirst',
+        }],
         directoryIndex: '/',
         ignoreURLParametersMatching: [/.*/],
-        // additionalManifestEntries: [
-        //   '/',
-        //   '/test',
-        //   '/test/deep'
-        // ],
       }),
     ],
   },
