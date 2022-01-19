@@ -1,6 +1,8 @@
 import { resolve } from 'path'
 import WorkboxPlugin from 'workbox-webpack-plugin'
 
+const revision = Date.now().toString(16)
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -63,9 +65,9 @@ export default {
         swDest: resolve('./static/sw.js'),
         maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
         additionalManifestEntries: [
-          { url: '/', revision: '8' },
-          { url: '/test', revision: '8' },
-          { url: '/test/deep', revision: '8' },
+          { url: '/', revision },
+          { url: '/test', revision },
+          { url: '/test/deep', revision },
         ],
         directoryIndex: '/',
         ignoreURLParametersMatching: [/.*/],
