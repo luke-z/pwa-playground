@@ -5,8 +5,9 @@
     <p><nuxt-link to="/test/deep">Link to deep</nuxt-link></p>
 
     <p><button @click="refresh">refresh page</button></p>
+    <p class="text-xl">dogs:</p>
     <p v-for="dog in dogs" :key="dog">{{ dog }}</p>
-    <p v-if="id">{{ id }}</p>
+    <p v-if="id" class="mt-10">{{ id }}</p>
   </div>
 </template>
 
@@ -31,7 +32,12 @@ export default defineComponent({
 
     onMounted(async () => {
       console.log('mounted test page, fluppip')
-      dogs.value = (await fetch('https://dog.ceo/api/breed/hound/list') as any).message
+      dogs.value = (
+        await fetch('https://dog.ceo/api/breed/hound/list').then(
+          (response: any) => response.json()
+        )
+      ).message
+      console.log(dogs.value)
     })
 
     const id = computed(() => query.value.id)
