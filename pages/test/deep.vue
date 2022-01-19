@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-2xl">PWA Playground Deep Page4</h1>
+    <h1 class="text-2xl">PWA Playground Deep Page5</h1>
     <p><nuxt-link to="/test">Link to test</nuxt-link></p>
     <p><button @click="refresh">refresh page</button></p>
     <p v-if="id">{{ id }}</p>
