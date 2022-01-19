@@ -65,9 +65,9 @@ export default {
         additionalManifestEntries: [
           { url: '/', revision: '5' },
           { url: '/test', revision: '5' },
-          { url: '/test/', revision: '5' },
+          // { url: '/test/', revision: '5' },
           { url: '/test/deep', revision: '5' },
-          { url: '/test/deep/', revision: '5' },
+          // { url: '/test/deep/', revision: '5' },
         ],
         directoryIndex: '/',
         // additionalManifestEntries: [
