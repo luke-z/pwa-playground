@@ -101,6 +101,8 @@ export default {
               ],
               directoryIndex: '/',
               ignoreURLParametersMatching: [/.*/],
+              skipWaiting: true,
+              clientsClaim: true,
             }),
           ]
         : [],
