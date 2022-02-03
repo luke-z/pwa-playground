@@ -37,10 +37,10 @@ setDefaultHandler(new NetworkFirst())
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
-  urlManipulation: (url) => {
-    console.log(url)
-    console.log(url.substr(0, url.lastIndexOf('/') + 1))
-    return [url.substr(0, url.lastIndexOf('/') + 1)]
-  }
+  // urlManipulation: (url) => {
+  //   console.log(url)
+  //   console.log(url.substr(0, url.lastIndexOf('/') + 1))
+  //   return [url.substr(0, url.lastIndexOf('/') + 1)]
+  // }
 })
 
