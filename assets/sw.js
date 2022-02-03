@@ -38,7 +38,9 @@ precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
   urlManipulation: (url) => {
-    [url.substr(0, url.lastIndexOf('/') + 1)]
+    console.log(url)
+    console.log(url.substr(0, url.lastIndexOf('/') + 1))
+    return [url.substr(0, url.lastIndexOf('/') + 1)]
   }
 })
 
