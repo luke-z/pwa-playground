@@ -3,6 +3,7 @@
     <h1 class="text-2xl">PWA Playground Test Page5</h1>
     <p><nuxt-link to="/">Link to index</nuxt-link></p>
     <p><nuxt-link to="/test/deep">Link to deep</nuxt-link></p>
+    <p><nuxt-link to="/test/2">Link to deep dynamic</nuxt-link></p>
 
     <p><button @click="refresh">refresh page</button></p>
     <p class="text-xl">dogs:</p>

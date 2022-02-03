@@ -69,6 +69,7 @@ export default {
               additionalManifestEntries: [
                 { url: '/', revision },
                 { url: '/test', revision },
+                { url: '/test/', revision },
                 { url: '/test/deep', revision },
                 { url: '/manifest.json', revision },
               ],
