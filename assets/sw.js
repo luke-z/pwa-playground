@@ -25,9 +25,9 @@ const hash = Date.now().toString()
 const customRoutes = [
   { url: '/', revision: hash },
   { url: '/test', revision: hash },
+  { url: '/test/', revision: hash },
   { url: '/test/deep', revision: hash },
   { url: '/manifest.json', revision: hash },
-  { url: '/favicon.ico', revision: hash },
 ]
 
 manifest.push(...customRoutes)
@@ -37,8 +37,8 @@ setDefaultHandler(new NetworkFirst())
 precacheAndRoute(manifest, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
+  urlManipulation: (url) => {
+    [url.substr(0, url.lastIndexOf('/') + 1)]
+  }
 })
 
-registerRoute(new RegExp('/icons.*'), new CacheFirst(), 'GET')
-registerRoute(new RegExp('/_nuxt/.*'), new CacheFirst(), 'GET')
-registerRoute(new RegExp('/.*'), new NetworkFirst(), 'GET')

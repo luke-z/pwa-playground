@@ -62,49 +62,59 @@ export default {
     plugins:
       process.env.NODE_ENV === 'production'
         ? [
-            new WorkboxPlugin.GenerateSW({
-              // swSrc: './assets/sw.js',
-              swDest: resolve('./static/sw.js'),
-              maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
-              additionalManifestEntries: [
-                { url: '/', revision },
-                { url: '/test', revision },
-                { url: '/test/', revision },
-                { url: '/test/deep', revision },
-                { url: '/manifest.json', revision },
-              ],
-              runtimeCaching: [
-                {
-                  urlPattern: new RegExp(`${process.env.API_URL}.*`),
-                  handler: 'NetworkFirst',
-                },
-                {
-                  urlPattern: new RegExp('/icons.*'),
-                  handler: 'NetworkFirst',
-                },
-                // { // test post handler => doesn't work as cache cannot store post request
-                //   urlPattern: new RegExp('https://api.predic8.de/shop.*'),
-                //   method: 'POST',
-                //   handler: async ({ request }) => {
-                //     caches.match(request).then((cachedResponse) => {
-                //       const fetchPromise = fetch(request).then(
-                //         async (networkResponse) => {
-                //           const cache = await caches.open('post-cache');
-                //           cache.put(request, networkResponse.clone())
+          new WorkboxPlugin.InjectManifest({
+            swSrc: './assets/sw.js',
+            swDest: resolve('./static/sw.js'),
+            maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+            // additionalManifestEntries: [
+            //   '/',
+            //   '/test',
+            //   '/test/deep'
+            // ],
+          }),
+            // new WorkboxPlugin.GenerateSW({
+            //   // swSrc: './assets/sw.js',
+            //   swDest: resolve('./static/sw.js'),
+            //   maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+            //   additionalManifestEntries: [
+            //     { url: '/', revision },
+            //     { url: '/test', revision },
+            //     { url: '/test/', revision },
+            //     { url: '/test/deep', revision },
+            //     { url: '/manifest.json', revision },
+            //   ],
+            //   runtimeCaching: [
+            //     {
+            //       urlPattern: new RegExp(`${process.env.API_URL}.*`),
+            //       handler: 'NetworkFirst',
+            //     },
+            //     {
+            //       urlPattern: new RegExp('/icons.*'),
+            //       handler: 'NetworkFirst',
+            //     },
+            //     // { // test post handler => doesn't work as cache cannot store post request
+            //     //   urlPattern: new RegExp('https://api.predic8.de/shop.*'),
+            //     //   method: 'POST',
+            //     //   handler: async ({ request }) => {
+            //     //     caches.match(request).then((cachedResponse) => {
+            //     //       const fetchPromise = fetch(request).then(
+            //     //         async (networkResponse) => {
+            //     //           const cache = await caches.open('post-cache');
+            //     //           cache.put(request, networkResponse.clone())
 
-                //           return networkResponse
-                //         }
-                //       )
-                //       return cachedResponse || fetchPromise
-                //     })
-                //   },
-                // },
-              ],
-              directoryIndex: '/',
-              ignoreURLParametersMatching: [/.*/],
-              skipWaiting: true,
-              clientsClaim: true,
-            }),
+            //     //           return networkResponse
+            //     //         }
+            //     //       )
+            //     //       return cachedResponse || fetchPromise
+            //     //     })
+            //     //   },
+            //     // },
+            //   ],
+            //   directoryIndex: '/',
+            //   ignoreURLParametersMatching: [/.*/],
+            //   skipWaiting: true,
+            //   clientsClaim: true,
+            // }),
           ]
         : [],
   },
