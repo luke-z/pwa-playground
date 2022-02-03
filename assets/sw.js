@@ -7,8 +7,9 @@ import { CacheFirst, NetworkFirst } from 'workbox-strategies'
 
 const { skipWaiting } = self
 
-clientsClaim()
 skipWaiting()
+clientsClaim()
+
 
 setCacheNameDetails({
   prefix: 'test',
@@ -18,29 +19,17 @@ setCacheNameDetails({
   googleAnalytics: 'ga',
 })
 
-const manifest = self.__WB_MANIFEST
-
-const hash = Date.now().toString()
-
-const customRoutes = [
-  { url: '/', revision: hash },
-  { url: '/test', revision: hash },
-  { url: '/test/', revision: hash },
-  { url: '/test/deep', revision: hash },
-  { url: '/manifest.json', revision: hash },
-]
-
-manifest.push(...customRoutes)
-
 setDefaultHandler(new NetworkFirst())
 
-precacheAndRoute(manifest, {
+precacheAndRoute(self.__WB_MANIFEST, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
-  // urlManipulation: (url) => {
-  //   console.log(url)
-  //   console.log(url.substr(0, url.lastIndexOf('/') + 1))
-  //   return [url.substr(0, url.lastIndexOf('/') + 1)]
-  // }
+  urlManipulation: ({url}) => {
+    if (url.pathname.in)
+    console.log(url)
+    console.log(url.href)
+    console.log(url.href.substr(0, url.href.lastIndexOf('/') + 1))
+    return [new URL(url.href.substr(0, url.href.lastIndexOf('/') + 1))]
+  }
 })
 

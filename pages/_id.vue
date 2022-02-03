@@ -3,18 +3,23 @@
     <h1 class="text-2xl">PWA Playground dynamic page</h1>
     <p><nuxt-link to="/test">Link to test</nuxt-link></p>
     <p><button @click="refresh">refresh page</button></p>
+    {{id}}
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, useRouter, useContext, onMounted } from '@nuxtjs/composition-api'
+import { defineComponent, useRouter, useContext, onMounted, computed } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
-    const { query } = useContext()
+    const { query, params } = useContext()
     const refresh = () => {
       window.location.reload()
     }
+
+    const id = computed(() => {
+      return params.value.id
+    })
 
     onMounted(() => {
       console.log('mounted dynamic page, fluppip')
@@ -23,6 +28,7 @@ export default defineComponent({
   
     return {
       refresh,
+      id,
     }
   },
 })

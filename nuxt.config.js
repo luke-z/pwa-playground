@@ -2,13 +2,15 @@ import { resolve } from 'path'
 import WorkboxPlugin from 'workbox-webpack-plugin'
 
 const revision = Date.now().toString(16)
+const strapiUrlRegex = '(http://localhost:1337|https://mave-api(-test)?.migrosaare.ch)'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  server: {
+    port: 4000,
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -62,16 +64,18 @@ export default {
     plugins:
       process.env.NODE_ENV === 'production'
         ? [
-          new WorkboxPlugin.InjectManifest({
-            swSrc: './assets/sw.js',
-            swDest: resolve('./static/sw.js'),
-            maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
-            // additionalManifestEntries: [
-            //   '/',
-            //   '/test',
-            //   '/test/deep'
-            // ],
-          }),
+            new WorkboxPlugin.InjectManifest({
+              swSrc: './assets/sw.js',
+              swDest: resolve('./static/sw.js'),
+              maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+              additionalManifestEntries: [
+                { url: '/', revision: revision },
+                { url: '/test', revision: revision },
+                { url: '/test/', revision: revision },
+                { url: '/test/deep', revision: revision },
+                { url: '/manifest.json', revision: revision },
+              ],
+            }),
             // new WorkboxPlugin.GenerateSW({
             //   // swSrc: './assets/sw.js',
             //   swDest: resolve('./static/sw.js'),
