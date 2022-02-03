@@ -25,11 +25,12 @@ precacheAndRoute(self.__WB_MANIFEST, {
   ignoreURLParametersMatching: [/.*/],
   directoryIndex: '/',
   urlManipulation: ({url}) => {
-    if (url.pathname.in)
-    console.log(url)
-    console.log(url.href)
-    console.log(url.href.substr(0, url.href.lastIndexOf('/') + 1))
-    return [new URL(url.href.substr(0, url.href.lastIndexOf('/') + 1))]
+    const additionalURLs = []
+    if (url.pathname.startsWith('/test/')) {
+      const variation = url.href.substring(0, url.href.lastIndexOf('/') + 1)
+      additionalURLs.push(new URL(variation))
+    }
+    return additionalURLs
   }
 })
 
